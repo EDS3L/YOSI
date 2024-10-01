@@ -4,16 +4,18 @@ import com.yosi.additions.Colors;
 import com.yosi.additions.Listeners.TopSectionListener;
 import com.yosi.view.frame.mainFrame.TopBar.Support.SupportSection;
 
+
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionListener;
 
 
-public class TopBar extends JPanel implements Colors, TopSectionListener {
+public class TopBarFrame extends JPanel implements Colors, TopSectionListener {
     private static final int WIDTH = 1380;
     private static final int HEIGHT = 90;
     private static SupportSection supportSection;
 
-    public TopBar() {
+    public TopBarFrame() {
         supportSection = new SupportSection();
         setPreferredSize(new Dimension(WIDTH, HEIGHT));
         setBackground(panes);
@@ -30,6 +32,7 @@ public class TopBar extends JPanel implements Colors, TopSectionListener {
 
         add(supportButton);
     }
+
 
     public SupportSection getSupportSection() {
         return supportSection;
