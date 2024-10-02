@@ -1,6 +1,7 @@
 package com.yosi.view.frame.mainFrame.TopBar.Support;
 
 import com.yosi.additions.Colors;
+import com.yosi.view.frame.mainFrame.TopBar.Support.EmailSectionPanels.EmailSection;
 
 import javax.swing.*;
 import java.awt.*;

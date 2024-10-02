@@ -1,31 +1,18 @@
-package com.yosi.view.frame.mainFrame.TopBar.Support;
+package com.yosi.view.frame.mainFrame.TopBar.Support.EmailSectionPanels;
 
 import com.yosi.additions.Borders;
-import com.yosi.additions.Colors;
 import com.yosi.controller.Listeners.EmailSenderListener;
 
 import javax.swing.*;
 import java.awt.*;
 
-public class EmailSection extends JPanel implements Colors, Borders, EmailSenderListener {
+public class RightEmailSection implements Borders, EmailSenderListener {
 
     private static final int WIDTH = 565;
     private static final int HEIGHT = 620;
 
-    public EmailSection() {
-        setLayout(new BorderLayout());
-        add(getLeftSide(), BorderLayout.WEST);
-        add(getRightSide(), BorderLayout.EAST);
-    }
+    public RightEmailSection() {
 
-
-    public JPanel getLeftSide() {
-        JPanel leftSidePanel = new JPanel();
-        leftSidePanel.setPreferredSize(new Dimension(WIDTH, HEIGHT));
-        leftSidePanel.setBorder(detailsBorder("Formularz"));
-
-
-        return leftSidePanel;
     }
 
     public JPanel getRightSide() {
@@ -45,6 +32,4 @@ public class EmailSection extends JPanel implements Colors, Borders, EmailSender
 
         return rightSidePanel;
     }
-
-
 }

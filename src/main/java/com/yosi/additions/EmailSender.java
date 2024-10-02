@@ -13,7 +13,7 @@ public class EmailSender {
     public EmailSender() {
     }
 
-    public void send(String toEmail, String subject, String content) {
+    public void send(String toEmail, String subject, String content, String userEmail) {
         Properties props = new Properties();
         props.put("mail.smtp.host", "serwer2492574.home.pl");
         props.put("mail.smtp.socketFactory.port", "465");
@@ -28,9 +28,11 @@ public class EmailSender {
             }
         };
 
-        Session session = Session.getDefaultInstance(props, auth);;
+        Session session = Session.getDefaultInstance(props, auth);
 
-        EmailUtil.sendEmail(session, toEmail, subject, content);
+        String finalContent = content + userEmail;
+
+        EmailUtil.sendEmail(session, toEmail, subject, finalContent);
 
     }
 }

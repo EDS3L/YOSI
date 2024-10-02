@@ -14,7 +14,7 @@ public interface EmailSenderListener {
             @Override
             public void actionPerformed(ActionEvent e) {
                 EmailSender emailSender = new EmailSender();
-                emailSender.send("mta1997@wp.pl", "Wielka promocja", "w dniu dzisjejszym jest mega promocja");
+                emailSender.send("mta1997@wp.pl", "Wielka promocja", "w dniu dzisjejszym jest mega promocja", "michał@sweetgallery.pl");
 
             }
         };
