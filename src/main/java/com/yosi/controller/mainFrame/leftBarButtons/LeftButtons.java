@@ -1,9 +1,9 @@
 package com.yosi.controller.mainFrame.leftBarButtons;
 
 import com.yosi.additions.Colors;
-import com.yosi.additions.Listeners.DetailsListener;
-import com.yosi.additions.Listeners.OrderListener;
-import com.yosi.additions.Listeners.RemoveListener;
+import com.yosi.controller.Listeners.DetailsListener;
+import com.yosi.controller.Listeners.OrderListener;
+import com.yosi.controller.Listeners.RemoveListener;
 import com.yosi.view.frame.mainFrame.CenterBar.Center;
 import com.yosi.view.frame.mainFrame.CenterBar.OrdersList.OrdersInfoPanel;
 import com.yosi.view.frame.orderFame.addOrderFrame.AddOrder;
