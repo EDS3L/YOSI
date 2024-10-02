@@ -1,7 +1,7 @@
 package com.yosi.view.frame.mainFrame.CenterBar.OrdersList;
 
 import com.yosi.additions.Colors;
-import com.yosi.additions.Listeners.MouseListener;
+import com.yosi.controller.Listeners.MouseListener;
 import com.yosi.model.Client;
 import com.yosi.model.OrderAddress;
 import com.yosi.model.Shipment;
