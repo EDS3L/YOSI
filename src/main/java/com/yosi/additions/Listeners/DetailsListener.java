@@ -29,13 +29,14 @@ public interface DetailsListener {
                         OrderDetails.getDetailsAddress().setLabelCity(d.getCity());
                         OrderDetails.getDetailsAddress().setLabelStreet(d.getStreet());
                         OrderDetails.getDetailsAddress().setLabelHomeNumber(d.getHouseNumber() + "");
+                        OrderDetails.getDetailsAddress().setLabelLocalNumber(d.getLocalNumber() + "");
                         OrderDetails.getDetailsAddress().setLabelPostalCode(d.getPostalCode());
                         OrderDetails.getDetailsAddress().setLabelContactNumber(d.getContactNumber() + "");
                     });
 
                     client.getShipments().forEach( d -> {
                         OrderDetails.getDetailsShipment().setLabelHeight(d.getHeight() +"");
-                        OrderDetails.getDetailsShipment().setLabelWeight(d.getHeight() +"");
+                        OrderDetails.getDetailsShipment().setLabelWeight(d.getWeight() +"");
                         OrderDetails.getDetailsShipment().setLabelWidth(d.getWidth() +"");
                         OrderDetails.getDetailsShipment().setLabelLength(d.getLength() +"");
                     });
