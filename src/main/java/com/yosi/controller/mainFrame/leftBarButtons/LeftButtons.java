@@ -10,6 +10,7 @@ import com.yosi.view.frame.orderFame.addOrderFrame.AddOrder;
 import com.yosi.view.frame.orderFame.orderDetailsFrame.OrderDetails;
 
 
+import javax.swing.*;
 import java.awt.*;
 import java.util.ArrayList;
 
@@ -17,13 +18,13 @@ public class LeftButtons extends Panel implements Colors, OrderListener, Details
 
     public LeftButtons(AddOrder order, Center center, OrdersInfoPanel ordersInfoPanel, OrderDetails orderDetailsFrame) {
 
-        Button addOrder = new Button("Add Order");
-        Button removeOrder = new Button("Remove Order");
-        Button shipOrder = new Button("Ship Order");
-        Button orderDetails = new Button("Order Details");
-        Button refresh = new Button("Refresh");
+        JButton addOrder = new JButton("Add Order");
+        JButton removeOrder = new JButton("Remove");
+        JButton shipOrder = new JButton("Ship Order");
+        JButton orderDetails = new JButton("Order Details");
+        JButton refresh = new JButton("Refresh");
 
-        ArrayList<Button> buttons = new ArrayList<>();
+        ArrayList<JButton> buttons = new ArrayList<>();
         buttons.add(addOrder);
         buttons.add(removeOrder);
         buttons.add(shipOrder);
@@ -36,10 +37,11 @@ public class LeftButtons extends Panel implements Colors, OrderListener, Details
 
         for (int i = 0; i < buttons.size(); i++) {
             gbc.gridy = i;
-            Button button = buttons.get(i);
+            JButton button = buttons.get(i);
             button.setPreferredSize(new Dimension(120, 40));
+            button.setFocusPainted(false);
             button.setBackground(bg);
-            button.setFont(new Font("Sans-serif", Font.BOLD, 15));
+            button.setFont(new Font("Sans-serif", Font.BOLD, 13));
             button.setForeground(dark);
             add(button, gbc);
         }
