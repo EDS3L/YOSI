@@ -37,7 +37,7 @@ public interface DetailsListener {
                     client.getShipments().forEach( d -> {
                         OrderDetails.getDetailsShipment().setLabelHeight(d.getHeight() +"");
                         OrderDetails.getDetailsShipment().setLabelWeight(d.getWeight() +"");
-                        OrderDetails.getDetailsShipment().setLabelWidth(d.getWidth() +"");
+                        OrderDetails.getDetailsShipment().setLabelWidth(d.getWidth() + "");
                         OrderDetails.getDetailsShipment().setLabelLength(d.getLength() +"");
                     });
 
