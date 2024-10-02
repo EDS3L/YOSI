@@ -6,6 +6,7 @@ import com.yosi.view.frame.mainFrame.TopBar.Support.SupportSection;
 
 
 import javax.swing.*;
+import javax.swing.border.Border;
 import java.awt.*;
 
 
@@ -19,18 +20,29 @@ public class TopBar extends JPanel implements Colors, TopSectionListener {
         supportSection = new SupportSection();
         setPreferredSize(new Dimension(WIDTH, HEIGHT));
         setBackground(panes);
-        setLayout(new FlowLayout());
+        setLayout(new GridBagLayout());
         buttons();
 
     }
 
     public void buttons() {
-        JButton supportButton = new JButton("?");
+        JButton supportButton = new JButton();
+        supportButton.setFocusPainted(false);
+        ImageIcon originalIcon = new ImageIcon("src/main/java/com/yosi/additions/icons/customer-support.png");
+        supportButton.setIcon(originalIcon);
         if(supportButton.getActionListeners().length == 0) {
             supportButton.addActionListener(openSupportSection(getSupportSection()));
         }
 
-        add(supportButton);
+
+        supportButton.setPreferredSize(new Dimension(50,50));
+        GridBagConstraints gbc = new GridBagConstraints();
+
+        gbc.weightx = 1;
+        gbc.anchor = GridBagConstraints.EAST;
+        gbc.insets = new Insets(0,0,0,10);
+        add(supportButton, gbc);
+
     }
 
 
