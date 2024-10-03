@@ -1,55 +1,82 @@
 package com.yosi.view.frame.mainFrame.TopBar.Support.EmailSectionPanels;
 
 import com.yosi.additions.Borders;
+import com.yosi.additions.Colors;
+import com.yosi.additions.emailAdditions.TextAreaField;
+import com.yosi.additions.emailAdditions.TextFieldMail;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
-public class LeftEmailSection implements Borders {
+public class LeftEmailSection implements Borders, Colors {
     private static final int WIDTH = 565;
     private static final int HEIGHT = 620;
 
-    public LeftEmailSection() {
+    private TextFieldMail userName;
+    private TextFieldMail title;
+    private TextFieldMail caseAbout;
+    private TextFieldMail eMail;
 
+    private TextAreaField areaField;
+
+
+    public LeftEmailSection() {
+        eMail = new TextFieldMail("Twój e-mail");
+        userName = new TextFieldMail("Nazwa użytkownika");
+        title = new TextFieldMail("Tytuł");
+        caseAbout = new TextFieldMail("Czego dotyczy sprawa // mail wysyłki");
+        areaField = new TextAreaField("Treść");
+
+        
+        eMail.getTextField().addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                String emailText = eMail.getTextField().getText();
+                System.out.println("Email entered: " + emailText);
+            }
+        });
     }
 
     public JPanel getLeftSide() {
         JPanel leftSidePanel = new JPanel();
+        leftSidePanel.setBackground(white);
         leftSidePanel.setPreferredSize(new Dimension(WIDTH, HEIGHT));
         leftSidePanel.setBorder(detailsBorder("Formularz"));
 
-        leftSidePanel.add(createPanelSection("Nazwa użytkownika"));
-        leftSidePanel.add(createPanelSection("Tytuł"));
-        leftSidePanel.add(createPanelSection("Czego dotyczy sprawa // mail wysyłki"));
-        leftSidePanel.add(createPanelSection("Twój email"));
-        leftSidePanel.add(createPanelSection("Nazwa użytkownika"));
-        leftSidePanel.add(contentTextField("Treść"));
+
+
+        leftSidePanel.add(userName.getPanel());
+        leftSidePanel.add(title.getPanel());
+        leftSidePanel.add(caseAbout.getPanel());
+        leftSidePanel.add(eMail.getPanel());
+        leftSidePanel.add(areaField.getPanel());
 
 
         return leftSidePanel;
     }
 
-    public JPanel createPanelSection(String borderTitle) {
-        JPanel panel = new JPanel();
-        JTextField textField = new JTextField();
-        panel.setBorder(detailsBorder(borderTitle));
-        panel.setPreferredSize(new Dimension(200,90));
-        textField.setPreferredSize(new Dimension(140,30));
 
 
-        panel.add(textField);
-        return panel;
+    public TextFieldMail getUserName() {
+        return userName;
     }
 
-    public JPanel contentTextField(String borderTitle) {
-        JPanel panel = new JPanel();
-        JTextArea textArea = new JTextArea();
-        panel.setBorder(detailsBorder(borderTitle));
-        panel.setPreferredSize(new Dimension(500,600));
-        textArea.setPreferredSize(new Dimension(440,500));
-
-
-        panel.add(textArea);
-        return panel;
+    public TextFieldMail getTitle() {
+        return title;
     }
+
+    public TextFieldMail getCaseAbout() {
+        return caseAbout;
+    }
+
+    public TextFieldMail getMail() {
+        return eMail;
+    }
+
+    public TextAreaField getAreaField() {
+        return areaField;
+    }
+
 }

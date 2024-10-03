@@ -1,4 +1,4 @@
-package com.yosi.additions;
+package com.yosi.additions.emailAdditions;
 
 
 import javax.mail.Authenticator;

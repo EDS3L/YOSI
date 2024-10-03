@@ -1,8 +1,5 @@
 package com.yosi.additions;
 
-import com.yosi.additions.Borders;
-import com.yosi.additions.Colors;
-
 import javax.swing.*;
 import java.awt.*;
 

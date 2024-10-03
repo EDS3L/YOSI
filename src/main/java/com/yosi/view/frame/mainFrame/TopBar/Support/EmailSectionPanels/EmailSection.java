@@ -9,9 +9,6 @@ import java.awt.*;
 
 public class EmailSection extends JPanel implements Colors, Borders, EmailSenderListener {
 
-    private static final int WIDTH = 565;
-    private static final int HEIGHT = 620;
-
     private static LeftEmailSection leftEmailSection;
     private static RightEmailSection rightEmailSection;
 
@@ -19,9 +16,14 @@ public class EmailSection extends JPanel implements Colors, Borders, EmailSender
         leftEmailSection = new LeftEmailSection();
         rightEmailSection = new RightEmailSection();
 
-        setLayout(new BorderLayout());
-        add(getLeftEmailSection().getLeftSide(), BorderLayout.WEST);
-        add(getRightEmailSection().getRightSide(), BorderLayout.EAST);
+        setLayout(new GridBagLayout());
+        GridBagConstraints gbc = new GridBagConstraints();
+        gbc.weightx =1;
+        gbc.weighty = 1;
+        gbc.fill = GridBagConstraints.BOTH;
+        setBackground(white);
+        add(getLeftEmailSection().getLeftSide(),gbc);
+        add(getRightEmailSection().getRightSide(),gbc);
     }
 
     public LeftEmailSection getLeftEmailSection() {

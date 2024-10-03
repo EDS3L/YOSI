@@ -9,7 +9,7 @@ import static com.yosi.additions.Colors.*;
 public interface Borders {
 
 
-    public default Border border(String title) {
+    default Border border(String title) {
         Border lineBorder = new LineBorder(bg,2);
         TitledBorder titledBorder = new TitledBorder(lineBorder, title);
         titledBorder.setTitleColor(bg);
@@ -20,7 +20,7 @@ public interface Borders {
         return new CompoundBorder(marginBorder,titledBorder);
     }
 
-    public default Border detailsBorder(String title) {
+    default Border detailsBorder(String title) {
         Border lineBorder = new LineBorder(blue,2);
         TitledBorder titledBorder = new TitledBorder(lineBorder, title);
         titledBorder.setTitleColor(blue);
@@ -30,4 +30,16 @@ public interface Borders {
 
         return new CompoundBorder(marginBorder,titledBorder);
     }
+
+    default Border darkBorder(String title) {
+        Border lineBorder = new LineBorder(dark,2);
+        TitledBorder titledBorder = new TitledBorder(lineBorder, title);
+        titledBorder.setTitleColor(dark);
+        titledBorder.setTitleFont(new Font("Sans-serif", Font.BOLD,10));
+
+        Border marginBorder = new EmptyBorder(0,0,0,0);
+
+        return new CompoundBorder(marginBorder,titledBorder);
+    }
+
 }
