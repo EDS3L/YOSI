@@ -18,25 +18,11 @@ public class LeftEmailSection implements Borders, Colors {
     private TextFieldMail title;
     private TextFieldMail caseAbout;
     private TextFieldMail eMail;
-
     private TextAreaField areaField;
 
 
     public LeftEmailSection() {
-        eMail = new TextFieldMail("Twój e-mail");
-        userName = new TextFieldMail("Nazwa użytkownika");
-        title = new TextFieldMail("Tytuł");
-        caseAbout = new TextFieldMail("Czego dotyczy sprawa // mail wysyłki");
-        areaField = new TextAreaField("Treść");
 
-        
-        eMail.getTextField().addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                String emailText = eMail.getTextField().getText();
-                System.out.println("Email entered: " + emailText);
-            }
-        });
     }
 
     public JPanel getLeftSide() {
@@ -45,6 +31,11 @@ public class LeftEmailSection implements Borders, Colors {
         leftSidePanel.setPreferredSize(new Dimension(WIDTH, HEIGHT));
         leftSidePanel.setBorder(detailsBorder("Formularz"));
 
+        eMail = new TextFieldMail("Twój e-mail");
+        userName = new TextFieldMail("Nazwa użytkownika");
+        title = new TextFieldMail("Tytuł");
+        caseAbout = new TextFieldMail("Czego dotyczy sprawa // mail wysyłki");
+        areaField = new TextAreaField("Treść");
 
 
         leftSidePanel.add(userName.getPanel());
@@ -78,5 +69,6 @@ public class LeftEmailSection implements Borders, Colors {
     public TextAreaField getAreaField() {
         return areaField;
     }
+
 
 }

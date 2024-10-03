@@ -12,9 +12,13 @@ public class RightEmailSection implements Borders, EmailSenderListener, Colors {
     private static final int WIDTH = 565;
     private static final int HEIGHT = 620;
 
-    public RightEmailSection() {
+    private JButton sendButton;
+    private EmailSection emailSection;
 
+    public RightEmailSection(EmailSection emailSection) {
+        this.emailSection = emailSection;
     }
+
 
     public JPanel getRightSide() {
         JPanel rightSidePanel = new JPanel();
@@ -26,11 +30,15 @@ public class RightEmailSection implements Borders, EmailSenderListener, Colors {
         gbc.gridx = 0;
         gbc.gridy = 1;
 
-        JButton sendButton = new JButton("WYŚLIJ");
+        sendButton = new JButton("WYŚLIJ");
         sendButton.setPreferredSize(new Dimension(200, 60));
-        sendButton.addActionListener(emailSender());
+        sendButton.addActionListener(emailSender(emailSection));
         rightSidePanel.add(sendButton, gbc);
 
         return rightSidePanel;
+    }
+
+    public JButton getSendButton() {
+        return sendButton;
     }
 }

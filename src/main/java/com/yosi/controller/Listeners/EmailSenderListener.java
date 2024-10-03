@@ -12,22 +12,18 @@ import java.awt.event.ActionListener;
 
 public interface EmailSenderListener {
 
-    default ActionListener emailSender() {
+    default ActionListener emailSender(EmailSection mail) {
         return new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 EmailSender emailSender = new EmailSender();
-                EmailSection mail = new EmailSection();
 
+                    String eMail = mail.getLeftEmailSection().getMail().getText();
+                String title = mail.getLeftEmailSection().getTitle().getText();
+                String caseAbout = mail.getLeftEmailSection().getCaseAbout().getText();
+                String to = mail.getLeftEmailSection().getMail().getText();
+                emailSender.send("mta1997@wp.pl", title, caseAbout,eMail);
 
-                LeftEmailSection leftEmailSection = mail.getLeftEmailSection();
-                if (leftEmailSection != null) {
-                    JTextField emailTextField = leftEmailSection.getMail().getTextField();
-                    String emailText = emailTextField.getText();
-                    System.out.println("Email: " + emailText);
-                } else {
-                    System.out.println("LeftEmailSection is null");
-                }
             }
         };
     }

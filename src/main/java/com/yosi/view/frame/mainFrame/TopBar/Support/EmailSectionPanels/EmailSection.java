@@ -12,9 +12,11 @@ public class EmailSection extends JPanel implements Colors, Borders, EmailSender
     private static LeftEmailSection leftEmailSection;
     private static RightEmailSection rightEmailSection;
 
+
+
     public EmailSection() {
         leftEmailSection = new LeftEmailSection();
-        rightEmailSection = new RightEmailSection();
+        rightEmailSection = new RightEmailSection(this);
 
         setLayout(new GridBagLayout());
         GridBagConstraints gbc = new GridBagConstraints();
