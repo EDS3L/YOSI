@@ -9,6 +9,7 @@ import java.awt.*;
 public class TextAreaField implements Colors, Borders {
 
     private final JPanel panel;
+    private final JTextArea textArea;
 
     public TextAreaField(String borderTitle) {
         panel = new JPanel();
@@ -17,11 +18,11 @@ public class TextAreaField implements Colors, Borders {
         panel.setPreferredSize(new Dimension(360, 290));
         panel.setLayout(new BorderLayout());
 
-        JTextArea textArea = new JTextArea();
+        textArea = new JTextArea();
         textArea.setFont(new Font("Sans-serif", Font.PLAIN, 15));
         textArea.setLineWrap(true);
         textArea.setWrapStyleWord(true);
-        textArea.setText("Dzień dobry, \n"+ "\n".repeat(10) + "Pozdrawiam.");
+        textArea.setText("Dzień dobry, \n"+ "\n".repeat(10) + "Pozdrawiam. \n");
 
 
         JScrollPane scrollPane = new JScrollPane(textArea);
@@ -34,5 +35,8 @@ public class TextAreaField implements Colors, Borders {
 
     public JPanel getPanel() {
         return panel;
+    }
+    public String getText() {
+        return textArea.getText();
     }
 }

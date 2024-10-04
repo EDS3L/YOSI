@@ -3,6 +3,7 @@ package com.yosi.controller.mainFrame.leftBarButtons;
 import com.yosi.additions.Colors;
 import com.yosi.controller.Listeners.DetailsListener;
 import com.yosi.controller.Listeners.OrderListener;
+import com.yosi.controller.Listeners.PDFListener;
 import com.yosi.controller.Listeners.RemoveListener;
 import com.yosi.view.frame.mainFrame.CenterBar.Center;
 import com.yosi.view.frame.mainFrame.CenterBar.OrdersList.OrdersInfoPanel;
@@ -14,7 +15,8 @@ import javax.swing.*;
 import java.awt.*;
 import java.util.ArrayList;
 
-public class LeftButtons extends Panel implements Colors, OrderListener, DetailsListener, RemoveListener {
+public class LeftButtons extends Panel implements Colors, OrderListener, DetailsListener,
+        RemoveListener, PDFListener {
 
     public LeftButtons(AddOrder order, Center center, OrdersInfoPanel ordersInfoPanel, OrderDetails orderDetailsFrame) {
 
@@ -64,6 +66,10 @@ public class LeftButtons extends Panel implements Colors, OrderListener, Details
             orderDetails.addActionListener(getOrderDetails(orderDetailsFrame, ordersInfoPanel));
 
 
+        }
+
+        if(shipOrder.getActionListeners().length == 0) {
+            shipOrder.addActionListener(pdfCreator());
         }
 
 

@@ -21,7 +21,7 @@ public class SupportSection extends JFrame implements Colors {
 
     public void initFrame() {
         setPreferredSize(new Dimension(WIDTH, HEIGHT));
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         getContentPane().setBackground(bg);
         setLayout(new BorderLayout());
 

@@ -18,11 +18,11 @@ public interface EmailSenderListener {
             public void actionPerformed(ActionEvent e) {
                 EmailSender emailSender = new EmailSender();
 
-                    String eMail = mail.getLeftEmailSection().getMail().getText();
+                String eMail = mail.getLeftEmailSection().getMail().getText();
                 String title = mail.getLeftEmailSection().getTitle().getText();
-                String caseAbout = mail.getLeftEmailSection().getCaseAbout().getText();
-                String to = mail.getLeftEmailSection().getMail().getText();
-                emailSender.send("mta1997@wp.pl", title, caseAbout,eMail);
+                String caseAbout = mail.getLeftEmailSection().getAreaField().getText();
+                String to = mail.getLeftEmailSection().getToMail().getText();
+                emailSender.send(to, title, caseAbout + "\nEmail do odpowiedzi: ",eMail);
 
             }
         };

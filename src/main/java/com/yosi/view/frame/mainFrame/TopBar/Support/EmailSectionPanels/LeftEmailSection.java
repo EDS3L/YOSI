@@ -7,16 +7,13 @@ import com.yosi.additions.emailAdditions.TextFieldMail;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
 public class LeftEmailSection implements Borders, Colors {
     private static final int WIDTH = 565;
     private static final int HEIGHT = 620;
 
-    private TextFieldMail userName;
+    private TextFieldMail toMail;
     private TextFieldMail title;
-    private TextFieldMail caseAbout;
     private TextFieldMail eMail;
     private TextAreaField areaField;
 
@@ -32,15 +29,13 @@ public class LeftEmailSection implements Borders, Colors {
         leftSidePanel.setBorder(detailsBorder("Formularz"));
 
         eMail = new TextFieldMail("Twój e-mail");
-        userName = new TextFieldMail("Nazwa użytkownika");
+        toMail = new TextFieldMail("Gdzie chcesz wysłać");
         title = new TextFieldMail("Tytuł");
-        caseAbout = new TextFieldMail("Czego dotyczy sprawa // mail wysyłki");
         areaField = new TextAreaField("Treść");
 
 
-        leftSidePanel.add(userName.getPanel());
+        leftSidePanel.add(toMail.getPanel());
         leftSidePanel.add(title.getPanel());
-        leftSidePanel.add(caseAbout.getPanel());
         leftSidePanel.add(eMail.getPanel());
         leftSidePanel.add(areaField.getPanel());
 
@@ -50,16 +45,12 @@ public class LeftEmailSection implements Borders, Colors {
 
 
 
-    public TextFieldMail getUserName() {
-        return userName;
+    public TextFieldMail getToMail() {
+        return toMail;
     }
 
     public TextFieldMail getTitle() {
         return title;
-    }
-
-    public TextFieldMail getCaseAbout() {
-        return caseAbout;
     }
 
     public TextFieldMail getMail() {
