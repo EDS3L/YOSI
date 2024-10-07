@@ -36,7 +36,7 @@ public class OrdersInfoPanel extends JPanel implements Colors, MouseListener {
             String name = client.getName();
             String city = String.valueOf(client.getOrderAddress().stream().map(OrderAddress::getCity).map(String::valueOf).collect(Collectors.joining(", ")));
             String nip = String.valueOf(client.getNip());
-            String shippingNumber = String.valueOf(client.getShipments().stream().map(Shipment::getLength).map(String::valueOf).collect(Collectors.joining(", ")));
+            String shippingNumber = String.valueOf(client.getShipments().stream().map(Shipment::getShipmentNumber).map(String::valueOf).collect(Collectors.joining(", ")));
 
             JPanel idPanel = new JPanel();
             JPanel namePanel = new JPanel();

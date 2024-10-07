@@ -1,37 +1,71 @@
 package com.yosi.controller.Listeners;
 
-import com.itextpdf.text.*;
-import com.itextpdf.text.pdf.PdfWriter;
+import com.yosi.additions.PDFTemplate;
+import com.yosi.model.Client;
+import com.yosi.model.OrderAddress;
+import com.yosi.model.Shipment;
+import com.yosi.services.YosiDAODB;
+import com.yosi.services.YosiService;
+import com.yosi.view.frame.mainFrame.CenterBar.OrdersList.OrdersInfoPanel;
+
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
+import java.util.List;
 
 public interface PDFListener {
+    YosiService yosiService = new YosiService(new YosiDAODB());
+    PDFTemplate pdf = new PDFTemplate();
+    default ActionListener pdfCreator(OrdersInfoPanel ordersInfoPanel) {
 
-    default ActionListener pdfCreator() {
+
         return new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                Document document = new Document();
-                try {
-                    PdfWriter.getInstance(document, new FileOutputStream("iTextHelloWorld.pdf"));
-                } catch (DocumentException | FileNotFoundException ex) {
-                    throw new RuntimeException(ex);
-                }
+                if (ordersInfoPanel.getIds().size() == 1) {
+                    int id = Integer.parseInt(ordersInfoPanel.getIds().getFirst());
 
-                document.open();
-                Font font = FontFactory.getFont(FontFactory.COURIER, 16, BaseColor.BLACK);
-                Chunk chunk = new Chunk("Hello World", font);
+                    Client client = yosiService.getEntity(id);
 
-                try {
-                    document.add(chunk);
-                } catch (DocumentException ex) {
-                    throw new RuntimeException(ex);
+                    List<Shipment> shipmentList = client.getShipments();
+                    Shipment shipment = shipmentList.getFirst();
+
+                    List<OrderAddress> orderAddressList = client.getOrderAddress();
+                    OrderAddress orderAddress = orderAddressList.getFirst();
+
+                    List<Client> clients = yosiService.findAll();
+
+                    if(shipment.getShipmentNumber() == 0) {
+                        shipment.setShipmentNumber(getHighestNumber(clients));
+                        yosiService.update(client);
+                    } else {
+                        System.out.println("To zamówienie jest już nadane");
+                    }
+
+
+
+
+
+
                 }
-                document.close();
             }
         };
+    }
+
+    private long getHighestNumber(List<Client> clients) {
+        long highestNumber = Integer.MIN_VALUE;
+
+        for (Client client1 : clients) {
+            for (Shipment shipment2 : client1.getShipments()) {
+                long shipmentNumber = shipment2.getShipmentNumber();
+
+                if (shipmentNumber > highestNumber) {
+                    highestNumber = shipmentNumber;
+                }
+            }
+        }
+
+
+        return highestNumber + 1;
     }
 }

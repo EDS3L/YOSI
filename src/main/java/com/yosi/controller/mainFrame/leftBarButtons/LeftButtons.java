@@ -69,7 +69,7 @@ public class LeftButtons extends Panel implements Colors, OrderListener, Details
         }
 
         if(shipOrder.getActionListeners().length == 0) {
-            shipOrder.addActionListener(pdfCreator());
+            shipOrder.addActionListener(pdfCreator(ordersInfoPanel));
         }
 
 

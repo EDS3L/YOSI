@@ -9,7 +9,6 @@ import com.yosi.view.frame.orderFame.addOrderFrame.AddOrder;
 import com.yosi.view.frame.orderFame.addOrderFrame.addOrderPanels.AddAddressPanel;
 import com.yosi.view.frame.orderFame.addOrderFrame.addOrderPanels.AddClientPanel;
 import com.yosi.view.frame.orderFame.addOrderFrame.addOrderPanels.AddShipmentPanel;
-import org.hibernate.query.Order;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -55,7 +54,7 @@ public record OrderController(AddClientPanel clientPanel, AddShipmentPanel shipm
                 Client clint = new Client(name,nipClint,city);
 
 
-                Shipment shipment = new Shipment(weightAddress,widthAddress,heightAddress,lengthAddress);
+                Shipment shipment = new Shipment(weightAddress,widthAddress,heightAddress,lengthAddress,0);
                 ArrayList<Shipment> shipmentList = new ArrayList<Shipment>();
                 shipmentList.add(shipment);
 

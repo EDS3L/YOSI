@@ -9,6 +9,7 @@ public class Shipment {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     private int weight,width,height,length;
+    private long shipmentNumber;
 
     @ManyToOne
     @JoinColumn(name = "client_id")
@@ -19,11 +20,12 @@ public class Shipment {
     public Shipment() {
     }
 
-    public Shipment(int weight, int width, int height, int length) {
+    public Shipment(int weight, int width, int height, int length, long shipmentNumber) {
         this.weight = weight;
         this.width = width;
         this.height = height;
         this.length = length;
+        this.shipmentNumber = shipmentNumber;
     }
 
     public int getId() {
@@ -74,6 +76,14 @@ public class Shipment {
         this.client = client;
     }
 
+    public long getShipmentNumber() {
+        return shipmentNumber;
+    }
+
+    public void setShipmentNumber(long shipmentNumber) {
+        this.shipmentNumber = shipmentNumber;
+    }
+
     @Override
     public String toString() {
         return "Shipment{" +
@@ -82,6 +92,7 @@ public class Shipment {
                 ", width=" + width +
                 ", height=" + height +
                 ", length=" + length +
+                ", shipmentNumber=" + shipmentNumber +
                 '}';
     }
 }
