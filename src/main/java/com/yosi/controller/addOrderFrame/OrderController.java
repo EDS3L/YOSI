@@ -18,6 +18,7 @@ import java.util.List;
 
 public record OrderController(AddClientPanel clientPanel, AddShipmentPanel shipmentPanel, AddAddressPanel addressPanel, AddOrder order) {
 
+    static String nipRegex = "^[0-9]{10}$";
     static YosiService yosiService = new YosiService(new YosiDAODB());
     public ActionListener addAction() {
         return new ActionListener() {
@@ -51,7 +52,8 @@ public record OrderController(AddClientPanel clientPanel, AddShipmentPanel shipm
                 long contactNumberShipment = Long.parseLong(contactNumber);
 
 
-                Client clint = new Client(name,nipClint,city);
+                    Client clint = new Client(name, nipClint, city);
+
 
 
                 Shipment shipment = new Shipment(weightAddress,widthAddress,heightAddress,lengthAddress,"0");
@@ -69,10 +71,15 @@ public record OrderController(AddClientPanel clientPanel, AddShipmentPanel shipm
 
                 clint.setShipments(shipmentList);
                 shipment.setClient(clint);
+                if(nip.matches(nipRegex)) {
+                    yosiService.save(clint);
+                    order.dispatchEvent(new WindowEvent(order, WindowEvent.WINDOW_CLOSING));
+                } else {
+                    System.out.println("zły nip");
+                }
 
-                yosiService.save(clint);
 
-                order.dispatchEvent(new WindowEvent(order, WindowEvent.WINDOW_CLOSING));
+
 
 
 
