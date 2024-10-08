@@ -11,7 +11,7 @@ import java.awt.*;
 
 public class AddOrder extends JFrame implements Colors {
     private static final int WIDTH = 1140;
-    private static final int HEIGHT = 800;
+    private static final int HEIGHT = 620;
     AddAddressPanel addressPanel = new AddAddressPanel();
     AddClientPanel clientPanel = new AddClientPanel();
     AddShipmentPanel shipmentPanel = new AddShipmentPanel();

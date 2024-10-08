@@ -5,7 +5,7 @@ import java.awt.*;
 
 public interface Alert {
 
-     static void setWarningMsg(String text){
+     default void setWarningMsg(String text){
         Toolkit.getDefaultToolkit().beep();
         JOptionPane optionPane = new JOptionPane(text,JOptionPane.WARNING_MESSAGE);
         JDialog dialog = optionPane.createDialog("Warning!");

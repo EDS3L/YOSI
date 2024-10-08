@@ -1,5 +1,6 @@
 package com.yosi.controller.addOrderFrame;
 
+import com.yosi.additions.Alert;
 import com.yosi.model.Client;
 import com.yosi.model.OrderAddress;
 import com.yosi.model.Shipment;
@@ -14,12 +15,14 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowEvent;
 import java.util.ArrayList;
-import java.util.List;
 
-public record OrderController(AddClientPanel clientPanel, AddShipmentPanel shipmentPanel, AddAddressPanel addressPanel, AddOrder order) {
+public record OrderController(AddClientPanel clientPanel, AddShipmentPanel shipmentPanel, AddAddressPanel addressPanel,
+                              AddOrder order) implements Alert {
 
     static String nipRegex = "^[0-9]{10}$";
+    static String phoneNumberRegex = "^[0-9]{3}\s*[0-9]{3}\s*[0-9]{3}\s*$";
     static YosiService yosiService = new YosiService(new YosiDAODB());
+
     public ActionListener addAction() {
         return new ActionListener() {
             @Override
@@ -52,17 +55,15 @@ public record OrderController(AddClientPanel clientPanel, AddShipmentPanel shipm
                 long contactNumberShipment = Long.parseLong(contactNumber);
 
 
-                    Client clint = new Client(name, nipClint, city);
+                Client clint = new Client(name, nipClint, city);
 
 
-
-                Shipment shipment = new Shipment(weightAddress,widthAddress,heightAddress,lengthAddress,"0");
+                Shipment shipment = new Shipment(weightAddress, widthAddress, heightAddress, lengthAddress, "0");
                 ArrayList<Shipment> shipmentList = new ArrayList<Shipment>();
                 shipmentList.add(shipment);
 
 
-                OrderAddress orderAddress = new OrderAddress(country,addressCity,street,houseNumberShipment,
-                        localNumberAddress,postalCode,contactNumberShipment);
+                OrderAddress orderAddress = new OrderAddress(country, addressCity, street, houseNumberShipment, localNumberAddress, postalCode, contactNumberShipment);
                 ArrayList<OrderAddress> orderAddressList = new ArrayList<OrderAddress>();
                 orderAddressList.add(orderAddress);
 
@@ -71,19 +72,14 @@ public record OrderController(AddClientPanel clientPanel, AddShipmentPanel shipm
 
                 clint.setShipments(shipmentList);
                 shipment.setClient(clint);
-                if(nip.matches(nipRegex)) {
+                if (!nip.matches(nipRegex)) {
+                    setWarningMsg("zly nip");
+                } else if(!contactNumber.matches(phoneNumberRegex)) {
+                    setWarningMsg("Zły numer telefonu");
+                } else {
                     yosiService.save(clint);
                     order.dispatchEvent(new WindowEvent(order, WindowEvent.WINDOW_CLOSING));
-                } else {
-                    System.out.println("zły nip");
                 }
-
-
-
-
-
-
-
 
 
             }
