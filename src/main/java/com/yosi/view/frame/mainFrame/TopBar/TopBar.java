@@ -8,7 +8,10 @@ import com.yosi.view.frame.mainFrame.TopBar.Support.SupportSection;
 import javax.swing.*;
 import javax.swing.border.Border;
 import java.awt.*;
-
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
 
 
 public class TopBar extends JPanel implements Colors, TopSectionListener {
@@ -21,6 +24,7 @@ public class TopBar extends JPanel implements Colors, TopSectionListener {
         setPreferredSize(new Dimension(WIDTH, HEIGHT));
         setBackground(panes);
         setLayout(new GridBagLayout());
+        setTimer();
         buttons();
 
     }
@@ -48,5 +52,34 @@ public class TopBar extends JPanel implements Colors, TopSectionListener {
 
     public SupportSection getSupportSection() {
         return supportSection;
+    }
+
+    public void setTimer() {
+        JPanel clockPanel = new JPanel();
+        clockPanel.setBackground(panes);
+
+        JLabel clockLabel = new JLabel();
+
+        clockLabel.setFont(new Font("Arial", Font.BOLD, 25));
+
+
+        clockPanel.add(clockLabel);
+
+        Timer timer = new Timer(1000, new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                LocalTime time = LocalTime.now();
+                DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm:ss");
+                clockLabel.setText(time.format(formatter));
+            }
+        });
+        timer.start();
+        GridBagConstraints gbc = new GridBagConstraints();
+
+        gbc.weightx = 1;
+        gbc.anchor = GridBagConstraints.WEST;
+        gbc.insets = new Insets(0,10,0,0);
+
+        add(clockPanel, gbc);
     }
 }
