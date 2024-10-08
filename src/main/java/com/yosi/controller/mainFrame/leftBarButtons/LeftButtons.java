@@ -74,7 +74,6 @@ public class LeftButtons extends Panel implements Colors, OrderListener, Details
 
 
 
-
     }
 
 

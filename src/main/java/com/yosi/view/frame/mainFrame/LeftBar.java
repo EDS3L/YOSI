@@ -11,9 +11,12 @@ public class LeftBar extends JPanel implements Colors {
 
 
     public LeftBar() {
+        setLayout(new GridBagLayout());
         setPreferredSize(new Dimension(WIDTH, HEIGHT));
         setBackground(dark);
-        setLayout(new GridBagLayout());
+
+        revalidate();
+        repaint();
 
     }
 

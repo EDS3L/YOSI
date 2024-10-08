@@ -1,6 +1,8 @@
 package com.yosi.controller.Listeners;
 
 import com.yosi.model.Client;
+import com.yosi.model.OrderAddress;
+import com.yosi.model.Shipment;
 import com.yosi.services.YosiDAODB;
 import com.yosi.services.YosiService;
 import com.yosi.view.frame.mainFrame.CenterBar.OrdersList.OrdersInfoPanel;
@@ -8,6 +10,7 @@ import com.yosi.view.frame.orderFame.orderDetailsFrame.OrderDetails;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 
 public interface DetailsListener {
 
@@ -42,8 +45,6 @@ public interface DetailsListener {
                     });
 
                     orderDetails.setVisible(true);
-
-
 
                 }
             }

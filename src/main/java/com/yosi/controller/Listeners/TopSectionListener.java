@@ -14,6 +14,7 @@ public interface TopSectionListener {
             @Override
             public void actionPerformed(ActionEvent e) {
                 supportSection.setVisible(true);
+
             }
         };
 

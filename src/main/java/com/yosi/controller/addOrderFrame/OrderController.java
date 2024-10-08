@@ -54,7 +54,7 @@ public record OrderController(AddClientPanel clientPanel, AddShipmentPanel shipm
                 Client clint = new Client(name,nipClint,city);
 
 
-                Shipment shipment = new Shipment(weightAddress,widthAddress,heightAddress,lengthAddress,0);
+                Shipment shipment = new Shipment(weightAddress,widthAddress,heightAddress,lengthAddress,"0");
                 ArrayList<Shipment> shipmentList = new ArrayList<Shipment>();
                 shipmentList.add(shipment);
 

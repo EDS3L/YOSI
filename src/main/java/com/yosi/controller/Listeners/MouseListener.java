@@ -35,6 +35,7 @@ public interface MouseListener {
                                 if (label.getName().equals("id")) {
                                     String id = label.getText();
                                     ordersInfoPanel.getIds().add(id);
+
                                 }
                             }
                         }

@@ -9,6 +9,8 @@ import com.yosi.services.YosiService;
 import com.yosi.view.frame.mainFrame.CenterBar.OrdersList.OrdersInfoPanel;
 
 
+import javax.swing.*;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.List;
@@ -30,21 +32,20 @@ public interface PDFListener {
                     List<Shipment> shipmentList = client.getShipments();
                     Shipment shipment = shipmentList.getFirst();
 
+
                     List<OrderAddress> orderAddressList = client.getOrderAddress();
                     OrderAddress orderAddress = orderAddressList.getFirst();
 
                     List<Client> clients = yosiService.findAll();
 
-                    if(shipment.getShipmentNumber() == 0) {
+                    if(shipment.getShipmentNumber().equals("0")) {
                         shipment.setShipmentNumber(getHighestNumber(clients));
                         yosiService.update(client);
+                        pdf.getPDF(client,shipment,orderAddress);
                     } else {
                         System.out.println("To zamówienie jest już nadane");
+                        setWarningMsg("To zamówienie jest już nadan");
                     }
-
-
-
-
 
 
                 }
@@ -52,12 +53,12 @@ public interface PDFListener {
         };
     }
 
-    private long getHighestNumber(List<Client> clients) {
+    private String getHighestNumber(List<Client> clients) {
         long highestNumber = Integer.MIN_VALUE;
 
         for (Client client1 : clients) {
             for (Shipment shipment2 : client1.getShipments()) {
-                long shipmentNumber = shipment2.getShipmentNumber();
+                long shipmentNumber = Long.parseLong(shipment2.getShipmentNumber());
 
                 if (shipmentNumber > highestNumber) {
                     highestNumber = shipmentNumber;
@@ -65,7 +66,14 @@ public interface PDFListener {
             }
         }
 
+        return String.format("%06d", highestNumber + 1);
+    }
 
-        return highestNumber + 1;
+    private static void setWarningMsg(String text){
+        Toolkit.getDefaultToolkit().beep();
+        JOptionPane optionPane = new JOptionPane(text,JOptionPane.WARNING_MESSAGE);
+        JDialog dialog = optionPane.createDialog("Warning!");
+        dialog.setAlwaysOnTop(true);
+        dialog.setVisible(true);
     }
 }

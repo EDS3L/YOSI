@@ -9,7 +9,7 @@ public class Shipment {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     private int weight,width,height,length;
-    private long shipmentNumber;
+    private String shipmentNumber;
 
     @ManyToOne
     @JoinColumn(name = "client_id")
@@ -20,7 +20,7 @@ public class Shipment {
     public Shipment() {
     }
 
-    public Shipment(int weight, int width, int height, int length, long shipmentNumber) {
+    public Shipment(int weight, int width, int height, int length, String shipmentNumber) {
         this.weight = weight;
         this.width = width;
         this.height = height;
@@ -76,11 +76,11 @@ public class Shipment {
         this.client = client;
     }
 
-    public long getShipmentNumber() {
+    public String getShipmentNumber() {
         return shipmentNumber;
     }
 
-    public void setShipmentNumber(long shipmentNumber) {
+    public void setShipmentNumber(String shipmentNumber) {
         this.shipmentNumber = shipmentNumber;
     }
 

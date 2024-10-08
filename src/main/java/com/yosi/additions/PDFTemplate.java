@@ -22,7 +22,7 @@ public class PDFTemplate {
 
         Document document = new com.itextpdf.text.Document();
         try {
-            PdfWriter.getInstance(document, new FileOutputStream("ShippingLabel.pdf"));
+            PdfWriter.getInstance(document, new FileOutputStream("temp/YO" + shipment.getShipmentNumber()+".pdf"));
         } catch (DocumentException | FileNotFoundException ex) {
             throw new RuntimeException(ex);
         }
