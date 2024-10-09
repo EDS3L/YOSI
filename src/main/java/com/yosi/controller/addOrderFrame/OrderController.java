@@ -21,6 +21,13 @@ public record OrderController(AddClientPanel clientPanel, AddShipmentPanel shipm
 
     static String nipRegex = "^[0-9]{10}$";
     static String phoneNumberRegex = "^[0-9]{3}\s*[0-9]{3}\s*[0-9]{3}\s*$";
+    static String countryRegex = "^[a-zA-ZąćęłńóśźżĄĆĘŁŃÓŚŹŻ ]{1,37}$";
+    static String streetRegex = "^[a-zA-ZąćęłńóśźżĄĆĘŁŃÓŚŹŻ ]{1,27}$";
+    static String houseNumberRegexAndLocal = "^[0-9]{1,6}$";
+    static String postalCodeRegex = "^[0-9]{1,10}$";
+    static String shippingRegex = "^[0-9]{1,3}$";
+
+
     static YosiService yosiService = new YosiService(new YosiDAODB());
 
     public ActionListener addAction() {
@@ -76,7 +83,22 @@ public record OrderController(AddClientPanel clientPanel, AddShipmentPanel shipm
                     setWarningMsg("zly nip");
                 } else if(!contactNumber.matches(phoneNumberRegex)) {
                     setWarningMsg("Zły numer telefonu");
-                } else {
+                } else if(!country.matches(countryRegex)){
+                    setWarningMsg("Zła nazwa Państwa");
+                }else if(!city.matches(countryRegex)){
+                    setWarningMsg("Zła nazwa Miasta");
+                }else if(!localNumber.matches(houseNumberRegexAndLocal)){
+                    setWarningMsg("Zły numer lokalu");
+                }else if(!houseNumber.matches(houseNumberRegexAndLocal)){
+                    setWarningMsg("Zła nazwa Domu");
+                }else if(!postalCode.matches(postalCodeRegex)){
+                    setWarningMsg("Zły kod pocztowy");
+                }else if(!street.matches(streetRegex)){
+                    setWarningMsg("Zła nazwa ulicy");
+                }else if(!weight.matches(shippingRegex) ||!width.matches(shippingRegex)
+                        ||!height.matches(shippingRegex) ||!length.matches(shippingRegex)){
+                    setWarningMsg("Złe wymiary");
+                }else{
                     yosiService.save(clint);
                     order.dispatchEvent(new WindowEvent(order, WindowEvent.WINDOW_CLOSING));
                 }
