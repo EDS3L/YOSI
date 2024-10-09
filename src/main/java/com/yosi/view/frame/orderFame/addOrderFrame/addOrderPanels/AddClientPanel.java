@@ -2,6 +2,7 @@ package com.yosi.view.frame.orderFame.addOrderFrame.addOrderPanels;
 
 import com.yosi.additions.Borders;
 import com.yosi.additions.Colors;
+import com.yosi.additions.LabeledNumberFieldPanel;
 import com.yosi.additions.LabeledTextFieldPanel;
 
 import javax.swing.*;
@@ -10,7 +11,7 @@ import java.awt.*;
 public class AddClientPanel extends JPanel implements Colors, Borders{
 
     private final LabeledTextFieldPanel namePanel;
-    private final LabeledTextFieldPanel nipPanel;
+    private final LabeledNumberFieldPanel nipPanel;
     private final LabeledTextFieldPanel cityPanel;
 
 
@@ -31,7 +32,7 @@ public class AddClientPanel extends JPanel implements Colors, Borders{
         namePanel = new LabeledTextFieldPanel("Company name");
         add(namePanel, gbc);
 
-        nipPanel = new LabeledTextFieldPanel("Company NIP");
+        nipPanel = new LabeledNumberFieldPanel("Company NIP");
         gbc.gridx = 1;
         add(nipPanel, gbc);
 

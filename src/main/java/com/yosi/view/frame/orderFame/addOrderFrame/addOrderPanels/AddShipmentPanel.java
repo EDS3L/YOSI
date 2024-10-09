@@ -2,16 +2,20 @@ package com.yosi.view.frame.orderFame.addOrderFrame.addOrderPanels;
 
 import com.yosi.additions.Borders;
 import com.yosi.additions.Colors;
+import com.yosi.additions.LabeledNumberFieldPanel;
 import com.yosi.additions.LabeledTextFieldPanel;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
+import java.text.NumberFormat;
 
 public class AddShipmentPanel extends JPanel implements Colors, Borders{
-   private final LabeledTextFieldPanel weightPanel;
-    private final LabeledTextFieldPanel widthPanel;
-    private final LabeledTextFieldPanel heightPanel;
-    private final LabeledTextFieldPanel lengthPanel;
+   private final LabeledNumberFieldPanel weightPanel;
+    private final LabeledNumberFieldPanel widthPanel;
+    private final LabeledNumberFieldPanel heightPanel;
+    private final LabeledNumberFieldPanel lengthPanel;
 
     public AddShipmentPanel() {
         setBackground(dark);
@@ -27,23 +31,20 @@ public class AddShipmentPanel extends JPanel implements Colors, Borders{
         gbc.weighty = 1;
         gbc.anchor = GridBagConstraints.CENTER;
 
-        weightPanel = new LabeledTextFieldPanel("weight");
+        weightPanel = new LabeledNumberFieldPanel("weight");
         add(weightPanel,gbc);
 
-        widthPanel = new LabeledTextFieldPanel("width");
+        widthPanel = new LabeledNumberFieldPanel("width");
         gbc.gridy = 1;
         add(widthPanel,gbc);
 
-        heightPanel = new LabeledTextFieldPanel("height");
+        heightPanel = new LabeledNumberFieldPanel("height");
         gbc.gridy = 2;
         add(heightPanel,gbc);
 
-        lengthPanel = new LabeledTextFieldPanel("length");
+        lengthPanel = new LabeledNumberFieldPanel("length");
         gbc.gridy = 3;
         add(lengthPanel,gbc);
-
-
-
     }
 
     public JTextField getWeightText() {

@@ -2,6 +2,7 @@ package com.yosi.view.frame.orderFame.addOrderFrame.addOrderPanels;
 
 import com.yosi.additions.Borders;
 import com.yosi.additions.Colors;
+import com.yosi.additions.LabeledNumberFieldPanel;
 import com.yosi.additions.LabeledTextFieldPanel;
 
 import javax.swing.*;
@@ -13,10 +14,10 @@ public class AddAddressPanel extends JPanel implements Colors, Borders {
     private final LabeledTextFieldPanel countryPanel;
     private final LabeledTextFieldPanel cityPanel;
     private final LabeledTextFieldPanel streetPanel;
-    private final LabeledTextFieldPanel houseNumberPanel;
-    private final LabeledTextFieldPanel localNumberPanel;
+    private final LabeledNumberFieldPanel houseNumberPanel;
+    private final LabeledNumberFieldPanel localNumberPanel;
     private final LabeledTextFieldPanel postalCodePanel ;
-    private final LabeledTextFieldPanel contactNumberPanel;
+    private final LabeledNumberFieldPanel contactNumberPanel;
 
 
     public AddAddressPanel() {
@@ -47,12 +48,12 @@ public class AddAddressPanel extends JPanel implements Colors, Borders {
         gbc.gridy = 2;
         add(streetPanel, gbc);
 
-        houseNumberPanel = new LabeledTextFieldPanel("House Number");
+        houseNumberPanel = new LabeledNumberFieldPanel("House Number");
         gbc.gridx = 0;
         gbc.gridy = 3;
         add(houseNumberPanel, gbc);
 
-        localNumberPanel = new LabeledTextFieldPanel("Local Number");
+        localNumberPanel = new LabeledNumberFieldPanel("Local Number");
         gbc.gridx = 1;
         gbc.gridy = 0;
         add(localNumberPanel, gbc);
@@ -62,7 +63,7 @@ public class AddAddressPanel extends JPanel implements Colors, Borders {
         gbc.gridy = 1;
         add(postalCodePanel, gbc);
 
-        contactNumberPanel = new LabeledTextFieldPanel("Contact Number");
+        contactNumberPanel = new LabeledNumberFieldPanel("Contact Number");
         gbc.gridx = 1;
         gbc.gridy = 2;
         add(contactNumberPanel, gbc);
