@@ -43,7 +43,6 @@ public interface PDFListener {
                         yosiService.update(client);
                         pdf.getPDF(client,shipment,orderAddress);
                     } else {
-                        System.out.println("To zamówienie jest już nadane");
                         setWarningMsg("To zamówienie jest już nadan");
                     }
 
