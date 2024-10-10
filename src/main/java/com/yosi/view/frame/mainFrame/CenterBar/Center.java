@@ -1,6 +1,8 @@
 package com.yosi.view.frame.mainFrame.CenterBar;
 
 import com.yosi.additions.Colors;
+import com.yosi.services.YosiDAODB;
+import com.yosi.services.YosiService;
 import com.yosi.view.frame.mainFrame.CenterBar.InfoBar.InfoBar;
 import com.yosi.view.frame.mainFrame.CenterBar.OrdersList.ListPanel;
 import com.yosi.view.frame.mainFrame.CenterBar.OrdersList.OrdersInfoPanel;
@@ -16,8 +18,8 @@ public class Center extends JPanel implements Colors {
     private final InfoBar infoBar = new InfoBar();
     private final JScrollPane scrollPane;
 
-    public Center(OrdersInfoPanel ordersInfoPanel) {
-        listPanel = new ListPanel(ordersInfoPanel);
+    public Center(OrdersInfoPanel ordersInfoPanel,YosiService yosiService ) {
+        listPanel = new ListPanel(ordersInfoPanel,yosiService);
 
         scrollPane = new JScrollPane(listPanel.getListPanel());
         scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);

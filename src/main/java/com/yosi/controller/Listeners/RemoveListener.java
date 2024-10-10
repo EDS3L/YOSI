@@ -10,8 +10,9 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public interface RemoveListener {
-    YosiService yosiService = new YosiService(new YosiDAODB());
-    default ActionListener removeListener(OrdersInfoPanel ordersInfoPanel, ListPanel listPanel) {
+
+    default ActionListener removeListener(OrdersInfoPanel ordersInfoPanel,
+                                          ListPanel listPanel,YosiService yosiService) {
         return new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {

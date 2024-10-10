@@ -43,54 +43,95 @@ public class YosiDAODB implements AbstractDAO<Client> {
     private Session openSession() {
         if(sessionFactory == null) sessionFactory = getSessionFactory();
         session = sessionFactory.openSession();
+        System.out.println("Session Opened");
         return session;
     }
 
     private Session openSessionWithTransition() {
         session = openSession();
         transaction = session.beginTransaction();
+        System.out.println("sesja otworzona z transition");
         return session;
     }
 
     private void closeSession() {
         if(session != null) session.close();
+        System.out.println("zamknięcie sesji");
     }
 
     private void closeSessionWithTransition() {
-        if(transaction != null) transaction.commit();
-        closeSession();
+        try {
+            if (transaction != null) {
+                transaction.commit();
+            }
+        } catch (Exception e) {
+            if (transaction != null) {
+                transaction.rollback();
+            }
+            e.printStackTrace();
+        } finally {
+            closeSession();
+            System.out.println("zamknięcie sesji z tranzykcją");
+        }
     }
 
 
     @Override
     public void save(Client entity) {
-        openSessionWithTransition().save(entity);
-        closeSessionWithTransition();
+        Transaction transaction = null;
+        try (Session session = openSession()) {
+            transaction = session.beginTransaction();
+            session.save(entity);
+            transaction.commit();
+        } catch (Exception e) {
+            if (transaction != null) {
+                transaction.rollback();
+            }
+            e.printStackTrace();
+        }
     }
 
     @Override
     public void update(Client entity) {
-        openSessionWithTransition().update(entity);
-        closeSessionWithTransition();
+        Transaction transaction = null;
+        try (Session session = openSession()) {
+            transaction = session.beginTransaction();
+            session.update(entity);
+            transaction.commit();
+        } catch (Exception e) {
+            if (transaction != null) {
+                transaction.rollback();
+            }
+            e.printStackTrace();
+        }
     }
 
     @Override
     public void delete(Client entity) {
-        openSessionWithTransition().delete(entity);
-        closeSessionWithTransition();
+        Transaction transaction = null;
+        try (Session session = openSession()) {
+            transaction = session.beginTransaction();
+            session.delete(entity);
+            transaction.commit();
+        } catch (Exception e) {
+            if (transaction != null) {
+                transaction.rollback();
+            }
+            e.printStackTrace();
+        }
     }
 
     @Override
     public List<Client> findAll() {
-        List<Client> list = (List<Client>) openSession().createQuery("From Client").list();
-        closeSession();
-        return list;
+        try (Session session = openSession()) {
+            return session.createQuery("FROM Client", Client.class).list();
+        }
     }
 
     @Override
     public Client getEntity(int id) {
-        Client clint = (Client) openSession().get(Client.class,id);
-        closeSession();
-        return clint;
+        try (Session session = openSession()) {
+            return session.get(Client.class, id);
+        }
     }
 }

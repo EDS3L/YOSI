@@ -2,6 +2,8 @@ package com.yosi.view.frame.orderFame.addOrderFrame;
 
 import com.yosi.additions.Colors;
 import com.yosi.controller.addOrderFrame.OrderController;
+import com.yosi.view.frame.mainFrame.CenterBar.OrdersList.ListPanel;
+import com.yosi.view.frame.mainFrame.CenterBar.OrdersList.OrdersInfoPanel;
 import com.yosi.view.frame.orderFame.addOrderFrame.addOrderPanels.AddAddressPanel;
 import com.yosi.view.frame.orderFame.addOrderFrame.addOrderPanels.AddClientPanel;
 import com.yosi.view.frame.orderFame.addOrderFrame.addOrderPanels.AddShipmentPanel;
@@ -15,15 +17,17 @@ public class AddOrder extends JFrame implements Colors {
     AddAddressPanel addressPanel = new AddAddressPanel();
     AddClientPanel clientPanel = new AddClientPanel();
     AddShipmentPanel shipmentPanel = new AddShipmentPanel();
+//    OrdersInfoPanel ordersInfoPanel = new OrdersInfoPanel();
+//    ListPanel listPanel = new ListPanel(ordersInfoPanel);
 
 
 
-    public AddOrder() {
+    public AddOrder(ListPanel listPanel) {
         setPreferredSize(new Dimension(WIDTH, HEIGHT));
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         setLayout(new GridBagLayout());
 
-        OrderController orderController = new OrderController(clientPanel,shipmentPanel, addressPanel, this);
+        OrderController orderController = new OrderController(clientPanel,shipmentPanel, addressPanel, this,listPanel, listPanel.getYosiService());
 
         clientPanel.getButton().addActionListener(orderController.addAction());
 

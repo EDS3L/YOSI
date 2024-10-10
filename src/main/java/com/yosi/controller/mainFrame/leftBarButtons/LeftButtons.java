@@ -59,17 +59,17 @@ public class LeftButtons extends Panel implements Colors, OrderListener, Details
         }
 
         if(removeOrder.getActionListeners().length == 0) {
-            removeOrder.addActionListener(removeListener(ordersInfoPanel, center.getListPanel()));
+            removeOrder.addActionListener(removeListener(ordersInfoPanel, center.getListPanel(), center.getListPanel().getYosiService()));
         }
 
         if(orderDetails.getActionListeners().length == 0) {
-            orderDetails.addActionListener(getOrderDetails(orderDetailsFrame, ordersInfoPanel));
+            orderDetails.addActionListener(getOrderDetails(orderDetailsFrame, ordersInfoPanel, center.getListPanel().getYosiService()));
 
 
         }
 
         if(shipOrder.getActionListeners().length == 0) {
-            shipOrder.addActionListener(pdfCreator(ordersInfoPanel));
+            shipOrder.addActionListener(pdfCreator(ordersInfoPanel, center.getListPanel().getYosiService()));
         }
 
 

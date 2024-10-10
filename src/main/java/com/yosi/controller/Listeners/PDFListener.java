@@ -16,9 +16,8 @@ import java.awt.event.ActionListener;
 import java.util.List;
 
 public interface PDFListener {
-    YosiService yosiService = new YosiService(new YosiDAODB());
     PDFTemplate pdf = new PDFTemplate();
-    default ActionListener pdfCreator(OrdersInfoPanel ordersInfoPanel) {
+    default ActionListener pdfCreator(OrdersInfoPanel ordersInfoPanel,YosiService yosiService) {
 
 
         return new ActionListener() {

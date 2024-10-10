@@ -14,8 +14,9 @@ import java.util.ArrayList;
 
 public interface DetailsListener {
 
-    YosiService yosiService = new YosiService(new YosiDAODB());
-    default ActionListener getOrderDetails(OrderDetails orderDetails, OrdersInfoPanel ordersInfoPanel) {
+
+    default ActionListener getOrderDetails(OrderDetails orderDetails,
+                                           OrdersInfoPanel ordersInfoPanel,YosiService yosiService) {
         return new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {

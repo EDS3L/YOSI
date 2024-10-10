@@ -12,10 +12,11 @@ import java.util.ArrayList;
 public class ListPanel extends JPanel {
 
     private final OrdersInfoPanel ordersInfoPanel;
+    private final YosiService yosiService;
 
-
-    public ListPanel(OrdersInfoPanel ordersInfoPanel) {
+    public ListPanel(OrdersInfoPanel ordersInfoPanel,YosiService yosiService) {
         this.ordersInfoPanel = ordersInfoPanel;
+        this.yosiService = yosiService;
     }
 
     public JPanel getListPanel() {
@@ -34,7 +35,6 @@ public class ListPanel extends JPanel {
         gbc.weighty = 1.0;
 //        gbc.insets = new Insets(0,0,0,0);
 
-        YosiService yosiService = new YosiService(new YosiDAODB());
         ArrayList<Client> clientList = (ArrayList<Client>) yosiService.findAll();
 
         ArrayList<JPanel> panelsList = ordersInfoPanel.createDataPanels(clientList);
@@ -51,6 +51,7 @@ public class ListPanel extends JPanel {
 
     }
 
-
-
+    public YosiService getYosiService() {
+        return yosiService;
+    }
 }
