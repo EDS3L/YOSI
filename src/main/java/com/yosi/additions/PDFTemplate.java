@@ -1,12 +1,15 @@
 package com.yosi.additions;
 
 import com.itextpdf.text.*;
+import com.itextpdf.text.Font;
 import com.itextpdf.text.pdf.PdfWriter;
 import com.yosi.model.Client;
 import com.yosi.model.OrderAddress;
 import com.yosi.model.Shipment;
 
 
+import java.awt.*;
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.text.DecimalFormat;
@@ -19,10 +22,11 @@ public class PDFTemplate {
 
     public Document getPDF(Client client, Shipment shipment, OrderAddress orderAddress) {
 
-
         Document document = new com.itextpdf.text.Document();
+        String pdfPath = "temp/YO" + shipment.getShipmentNumber() + ".pdf";
+
         try {
-            PdfWriter.getInstance(document, new FileOutputStream("temp/YO" + shipment.getShipmentNumber()+".pdf"));
+            PdfWriter.getInstance(document, new FileOutputStream(pdfPath));
         } catch (DocumentException | FileNotFoundException ex) {
             throw new RuntimeException(ex);
         }
@@ -65,6 +69,18 @@ public class PDFTemplate {
         }
         document.close();
         System.out.println("Etykieta przewozowa została wygenerowana!");
+
+        try {
+            if (Desktop.isDesktopSupported()) {
+                File pdfFile = new File(pdfPath);
+                Desktop.getDesktop().open(pdfFile);
+            } else {
+                System.out.println("Nie można otworzyć pliku PDF, ponieważ funkcja Desktop nie jest obsługiwana.");
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
         return document;
     }
 }
