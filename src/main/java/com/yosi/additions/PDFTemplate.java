@@ -43,7 +43,7 @@ public class PDFTemplate {
             document.add(header);
             document.add(new Paragraph(" "));
 
-            Paragraph senderLabel = new Paragraph("Nadawca:", headerFont);
+            Paragraph senderLabel = new Paragraph("Nadawca", headerFont);
             senderLabel.setAlignment(Element.ALIGN_CENTER);
             document.add(senderLabel);
 
@@ -53,23 +53,43 @@ public class PDFTemplate {
 
 
             document.add(new Paragraph(" "));
+            Paragraph taker = new Paragraph("Odbiorca", headerFont);
+            taker.setAlignment(Element.ALIGN_CENTER);
+            document.add(taker);
 
-            document.add(new Paragraph("Odbiorca:", headerFont));
-            document.add(new Paragraph(orderAddress.getCity(), bodyFont));
-            document.add(new Paragraph(orderAddress.getPostalCode(), bodyFont));
-            document.add(new Paragraph(orderAddress.getStreet() +
-                    orderAddress.getHouseNumber()+ "/" + orderAddress.getLocalNumber(), bodyFont));
+            Paragraph takerInfo = new Paragraph(
+                    orderAddress.getCity() +
+                    "\n" + orderAddress.getPostalCode() +
+                    "\n" + orderAddress.getStreet() + " " + orderAddress.getHouseNumber()+ "/" + orderAddress.getLocalNumber(),
+                    bodyFont
+            );
+            takerInfo.setAlignment(Element.ALIGN_CENTER);
+            document.add(takerInfo);
+
             document.add(new Paragraph(" "));
 
-
-            document.add(new Paragraph("Przesyłka:", headerFont));
-            double volume = ((double) shipment.getHeight() /100) * ((double) shipment.getLength() /100) * ((double) shipment.getWidth() /100);
+            Paragraph ship = new Paragraph("Przesyłka", headerFont);
+            ship.setAlignment(Element.ALIGN_CENTER);
+            document.add(ship);
+            double volume = (
+                    (double)
+                            shipment.getHeight() /100) *
+                    ((double) shipment.getLength() /100) *
+                    ((double) shipment.getWidth() /100);
             DecimalFormat f = new DecimalFormat("##.00");
-            document.add(new Paragraph( f.format(volume) + " m3", bodyFont));
-            document.add(new Paragraph( shipment.getWeight() + " kg", bodyFont));
+            Paragraph shipInfo = new Paragraph(
+                    f.format(volume) + " m3" +
+                            "\n" + shipment.getWeight() + " kg", bodyFont
+            );
+            shipInfo.setAlignment(Element.ALIGN_CENTER);
+            document.add(shipInfo);
+
             document.add(new Paragraph(" "));
 
-            document.add(new Paragraph("Numer przesyłki: " + shipment.getShipmentNumber(), bodyFont));
+            Paragraph shipNumber = new Paragraph("Numer przesyłki: " + shipment.getShipmentNumber(), bodyFont);
+            shipNumber.setAlignment(Element.ALIGN_CENTER);
+            document.add(shipNumber);
+
         } catch (Exception ex) {
             ex.printStackTrace();
         }
