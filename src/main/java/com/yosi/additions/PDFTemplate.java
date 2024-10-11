@@ -43,9 +43,15 @@ public class PDFTemplate {
             document.add(header);
             document.add(new Paragraph(" "));
 
-            document.add(new Paragraph("Nadawca:", headerFont));
-            document.add(new Paragraph(client.getName(), bodyFont));
-            document.add(new Paragraph(client.getCity(), bodyFont));
+            Paragraph senderLabel = new Paragraph("Nadawca:", headerFont);
+            senderLabel.setAlignment(Element.ALIGN_CENTER);
+            document.add(senderLabel);
+
+            Paragraph senderInfo = new Paragraph(client.getName() + "\n" + client.getCity(), bodyFont);
+            senderInfo.setAlignment(Element.ALIGN_CENTER);
+            document.add(senderInfo);
+
+
             document.add(new Paragraph(" "));
 
             document.add(new Paragraph("Odbiorca:", headerFont));
