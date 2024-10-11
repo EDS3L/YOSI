@@ -1,11 +1,13 @@
 package com.yosi.controller.Listeners;
 
+import com.itextpdf.text.Document;
 import com.yosi.additions.PDFTemplate;
 import com.yosi.model.Client;
 import com.yosi.model.OrderAddress;
 import com.yosi.model.Shipment;
 import com.yosi.services.YosiDAODB;
 import com.yosi.services.YosiService;
+import com.yosi.view.frame.mainFrame.CenterBar.OrdersList.ListPanel;
 import com.yosi.view.frame.mainFrame.CenterBar.OrdersList.OrdersInfoPanel;
 
 
@@ -13,11 +15,13 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.File;
+import java.io.IOException;
 import java.util.List;
 
 public interface PDFListener {
     PDFTemplate pdf = new PDFTemplate();
-    default ActionListener pdfCreator(OrdersInfoPanel ordersInfoPanel,YosiService yosiService) {
+    default ActionListener pdfCreator(ListPanel listPanel, OrdersInfoPanel ordersInfoPanel, YosiService yosiService) {
 
 
         return new ActionListener() {
@@ -40,7 +44,9 @@ public interface PDFListener {
                     if(shipment.getShipmentNumber().equals("0")) {
                         shipment.setShipmentNumber(getHighestNumber(clients));
                         yosiService.update(client);
-                        pdf.getPDF(client,shipment,orderAddress);
+                        listPanel.refreshList();
+                        Document doc = pdf.getPDF(client,shipment,orderAddress);
+
                     } else {
                         setWarningMsg("To zamówienie jest już nadan");
                     }
@@ -49,6 +55,18 @@ public interface PDFListener {
                 }
             }
         };
+    }
+
+    private void openPDF(File file) {
+        if (Desktop.isDesktopSupported()) {
+            try {
+                Desktop.getDesktop().open(file);
+            } catch (IOException e) {
+                setWarningMsg("Nie można otworzyć pliku PDF: " + e.getMessage());
+            }
+        } else {
+            setWarningMsg("Obsługa Desktop nie jest wspierana.");
+        }
     }
 
     private String getHighestNumber(List<Client> clients) {
