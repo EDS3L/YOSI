@@ -21,16 +21,10 @@ public class YosiDAODB implements AbstractDAO<Client> {
     private SessionFactory getSessionFactory() {
 
         try {
-
-
             registry = new StandardServiceRegistryBuilder().configure("hibernate.cfg.xml").build();
-
             MetadataSources sources = new MetadataSources(registry);
-
             Metadata metadata = sources.getMetadataBuilder().build();
-
             sessionFactory = metadata.getSessionFactoryBuilder().build();
-
         } catch (Exception e) {
             e.printStackTrace();
             if(sessionFactory != null) StandardServiceRegistryBuilder.destroy(registry);
@@ -43,95 +37,54 @@ public class YosiDAODB implements AbstractDAO<Client> {
     private Session openSession() {
         if(sessionFactory == null) sessionFactory = getSessionFactory();
         session = sessionFactory.openSession();
-        System.out.println("Session Opened");
         return session;
     }
 
     private Session openSessionWithTransition() {
         session = openSession();
         transaction = session.beginTransaction();
-        System.out.println("sesja otworzona z transition");
         return session;
     }
 
     private void closeSession() {
         if(session != null) session.close();
-        System.out.println("zamknięcie sesji");
     }
 
     private void closeSessionWithTransition() {
-        try {
-            if (transaction != null) {
-                transaction.commit();
-            }
-        } catch (Exception e) {
-            if (transaction != null) {
-                transaction.rollback();
-            }
-            e.printStackTrace();
-        } finally {
-            closeSession();
-            System.out.println("zamknięcie sesji z tranzykcją");
-        }
+        if(transaction != null) transaction.commit();
+        closeSession();
     }
 
 
     @Override
     public void save(Client entity) {
-        Transaction transaction = null;
-        try (Session session = openSession()) {
-            transaction = session.beginTransaction();
-            session.save(entity);
-            transaction.commit();
-        } catch (Exception e) {
-            if (transaction != null) {
-                transaction.rollback();
-            }
-            e.printStackTrace();
-        }
+        openSessionWithTransition().save(entity);
+        closeSessionWithTransition();
     }
 
     @Override
     public void update(Client entity) {
-        Transaction transaction = null;
-        try (Session session = openSession()) {
-            transaction = session.beginTransaction();
-            session.update(entity);
-            transaction.commit();
-        } catch (Exception e) {
-            if (transaction != null) {
-                transaction.rollback();
-            }
-            e.printStackTrace();
-        }
+        openSessionWithTransition().update(entity);
+        closeSessionWithTransition();
     }
 
     @Override
     public void delete(Client entity) {
-        Transaction transaction = null;
-        try (Session session = openSession()) {
-            transaction = session.beginTransaction();
-            session.delete(entity);
-            transaction.commit();
-        } catch (Exception e) {
-            if (transaction != null) {
-                transaction.rollback();
-            }
-            e.printStackTrace();
-        }
+        openSessionWithTransition().delete(entity);
+        closeSessionWithTransition();
     }
 
     @Override
     public List<Client> findAll() {
-        try (Session session = openSession()) {
-            return session.createQuery("FROM Client", Client.class).list();
-        }
+        List<Client> list = (List<Client>) openSession().createQuery("From Client").list();
+        closeSession();
+        return list;
     }
 
     @Override
     public Client getEntity(int id) {
-        try (Session session = openSession()) {
-            return session.get(Client.class, id);
-        }
+        Client clint = (Client) openSession().get(Client.class,id);
+        closeSession();
+        return clint;
     }
 }

@@ -19,9 +19,7 @@ public interface RemoveListener {
                 int id = 0;
                 if (ordersInfoPanel.getIds().size() == 1) {
                     id = Integer.parseInt(ordersInfoPanel.getIds().get(0));
-
                     Client client = yosiService.getEntity(id);
-                    System.out.println(client);
                     yosiService.delete(client);
                     listPanel.refreshList();
 

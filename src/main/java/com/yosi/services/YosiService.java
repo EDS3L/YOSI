@@ -11,7 +11,6 @@ public class YosiService {
 
     public YosiService(AbstractDAO<Client> abstractDAO) {
         this.yosiDAO = abstractDAO;
-        System.out.println("wywołanie");
     }
 
     public void save(Client entity){

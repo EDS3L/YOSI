@@ -5,7 +5,7 @@
 <hibernate-configuration>
     <session-factory>
         <property name="connection.driver_class">com.mysql.cj.jdbc.Driver</property>
-        <property name="connection.url">jdbc:mysql://serwer2492574.home.pl:3380/38960054_yosi?useSSL=false&amp;allowPublicKeyRetrieval=true&amp;connectTimeout=30000&amp;socketTimeout=60000</property>
+        <property name="connection.url">jdbc:mysql://serwer2492574.home.pl:3380/38960054_yosi</property>
         <property name="connection.username">38960054_yosi</property>
         <property name="connection.password">Tajne123!</property>
         <property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property>

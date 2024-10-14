@@ -33,7 +33,6 @@ public class ListPanel extends JPanel {
         gbc.fill = GridBagConstraints.BOTH;
         gbc.weightx = 1.0;
         gbc.weighty = 1.0;
-//        gbc.insets = new Insets(0,0,0,0);
 
         ArrayList<Client> clientList = (ArrayList<Client>) yosiService.findAll();
 

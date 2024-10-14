@@ -17,8 +17,6 @@ public class AddOrder extends JFrame implements Colors {
     AddAddressPanel addressPanel = new AddAddressPanel();
     AddClientPanel clientPanel = new AddClientPanel();
     AddShipmentPanel shipmentPanel = new AddShipmentPanel();
-//    OrdersInfoPanel ordersInfoPanel = new OrdersInfoPanel();
-//    ListPanel listPanel = new ListPanel(ordersInfoPanel);
 
 
 
