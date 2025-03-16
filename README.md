@@ -27,7 +27,8 @@ Aby uruchomić projekt lokalnie:
    
 2. **Konfiguracja Skrzynki Serwerowej:**  
    Podłącz swoją skrzynkę serwerową zgodnie z instrukcjami zawartymi w dokumentacji
-   ![obraz](https://github.com/user-attachments/assets/e88019e4-317e-47cf-a829-dec37c852103)
+ ![obraz](https://github.com/user-attachments/assets/37355dd2-5a7e-4c16-becc-47d72d716376)
+
 
 
 ---
